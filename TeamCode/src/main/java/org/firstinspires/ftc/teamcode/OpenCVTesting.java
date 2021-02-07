@@ -27,6 +27,9 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 @Autonomous(name = "OpenCV Test", group="thing")
 public class OpenCVTesting extends OpMode {
+    /**
+     * Declare variables here
+     */
     DcMotor leftFront;
     DcMotor rightFront;
     DcMotor leftBack;
@@ -35,6 +38,9 @@ public class OpenCVTesting extends OpMode {
     OpenCvWebcam webcam;
     @Override
     public void init() {
+        /**
+         * Init variables here
+         */
         leftFront = hardwareMap.dcMotor.get("leftFront");
         rightFront = hardwareMap.dcMotor.get("rightFront");
         leftBack = hardwareMap.dcMotor.get("leftBack");
@@ -76,6 +82,10 @@ public class OpenCVTesting extends OpMode {
     }
 
     public void start() {
+        /**
+         * Place all robot movement code in here.
+         */
+
         // 4 rings
         if (pipeline.position == EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.FOUR)
         {
@@ -91,6 +101,8 @@ public class OpenCVTesting extends OpMode {
         {
             // code code code
         }
+
+        // All other autonomous code goes down here
     }
 
 
