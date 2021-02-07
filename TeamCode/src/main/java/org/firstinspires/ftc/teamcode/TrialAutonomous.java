@@ -28,6 +28,7 @@ public class TrialAutonomous extends LinearOpMode {
         rightFront.setPower(0);
         leftBack.setPower(0);
         rightBack.setPower(0);
+        //test
 
 
 
