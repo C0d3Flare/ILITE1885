@@ -41,10 +41,10 @@ public class TrialTeleOP extends OpMode
     public void loop()
     {
         // Tank drive
-        leftFront.setPower(-gamepad1.left_stick_y);
-        rightFront.setPower(-gamepad1.right_stick_y);
-        leftBack.setPower(-gamepad1.left_stick_y);
-        rightBack.setPower(-gamepad1.right_stick_y);
+        leftFront.setPower(gamepad1.left_stick_y);
+        rightFront.setPower(gamepad1.right_stick_y);
+        leftBack.setPower(gamepad1.left_stick_y);
+        rightBack.setPower(gamepad1.right_stick_y);
         strafe();
 
         //Ramp controls
@@ -76,10 +76,10 @@ public class TrialTeleOP extends OpMode
     }
     public void strafe()
     {
-        leftFront.setPower(gamepad1.right_stick_x);
-        rightFront.setPower(-gamepad1.left_stick_x);
-        leftBack.setPower(-gamepad1.left_stick_x);
-        rightBack.setPower(gamepad1.right_stick_x);
+        leftFront.setPower(-gamepad1.right_stick_x);
+        rightFront.setPower(gamepad1.left_stick_x);
+        leftBack.setPower(gamepad1.left_stick_x);
+        rightBack.setPower(-gamepad1.right_stick_x);
     }
 
 }
