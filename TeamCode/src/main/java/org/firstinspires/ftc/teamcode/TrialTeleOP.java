@@ -42,7 +42,7 @@ public class TrialTeleOP extends OpMode
     {
         // Tank drive
         leftFront.setPower(gamepad1.left_stick_y);
-        rightFront.setPower(gamepad1.right_stick_y);
+        rightFront.setPower(-gamepad1.right_stick_y);
         leftBack.setPower(gamepad1.left_stick_y);
         rightBack.setPower(gamepad1.right_stick_y);
         strafe();
