@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-@Autonomous(name = "TrialAuto", group="test")
-public class TrialAutonomous extends LinearOpMode {
+
+@Autonomous(name="OpenCV Testing (DO NOT USE)", group ="test")
+public class OpenCVTesting extends LinearOpMode {
     DcMotor leftFront;
     DcMotor rightFront;
     DcMotor leftBack;
     DcMotor rightBack;
+
     @Override
     public void runOpMode() throws InterruptedException {
         leftFront = hardwareMap.dcMotor.get("leftFront");
@@ -23,21 +25,5 @@ public class TrialAutonomous extends LinearOpMode {
 
         waitForStart();
 
-        driveForward(1, 2500);
-        leftFront.setPower(0);
-        rightFront.setPower(0);
-        leftBack.setPower(0);
-        rightBack.setPower(0);
-
-
-
-    }
-    public void driveForward(double power, int time)
-    {
-        leftFront.setPower(power);
-        rightFront.setPower(power);
-        leftBack.setPower(power);
-        rightBack.setPower(power);
-        sleep(time);
     }
 }
