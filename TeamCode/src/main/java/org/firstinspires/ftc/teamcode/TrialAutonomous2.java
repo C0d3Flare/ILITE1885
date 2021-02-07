@@ -3,8 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-@Autonomous(name = "TrialAuto", group="test")
-public class TrialAutonomous extends LinearOpMode {
+
+@Autonomous(name = "TrialAuto2", group="test")
+public class TrialAutonomous2 extends LinearOpMode {
     DcMotor leftFront;
     DcMotor rightFront;
     DcMotor leftBack;
@@ -23,7 +24,7 @@ public class TrialAutonomous extends LinearOpMode {
 
         waitForStart();
 
-        driveForward(1, 2500);
+        driveForward(1, 5000);
         leftFront.setPower(0);
         rightFront.setPower(0);
         leftBack.setPower(0);

@@ -4,9 +4,10 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name="TeleOP", group="Master")
+@TeleOp(name="TeleOPT", group="Master")
 public class TrialTeleOP extends OpMode
 {
     private ElapsedTime runtime = new ElapsedTime();
@@ -17,7 +18,7 @@ public class TrialTeleOP extends OpMode
     DcMotor rightBack;
     DcMotor ramp;
     DcMotor intake;
-
+    Servo servo1;
     @Override
     public void init()
     {
@@ -27,16 +28,12 @@ public class TrialTeleOP extends OpMode
         rightBack = hwMotor("rightBack");
         ramp = hwMotor("ramp");
         intake = hwMotor("intake");
+        servo1 = hardwareMap.servo.get("servo");
 
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         rightFront.setDirection(DcMotor.Direction.FORWARD);
         leftBack.setDirection(DcMotor.Direction.REVERSE);
         rightBack.setDirection(DcMotor.Direction.FORWARD);
-
-        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 
@@ -51,19 +48,25 @@ public class TrialTeleOP extends OpMode
         strafe();
 
         //Ramp controls
-        ramp.setPower(-gamepad2.right_stick_y);
-        intake.setPower(gamepad1.right_trigger);
+        ramp.setPower(gamepad2.right_stick_y);
+        //intake.setPower(gamepad1.right_trigger);
         intake.setPower(gamepad2.right_trigger);
-        intake.setPower(-gamepad1.left_trigger);
+        //intake.setPower(-gamepad1.left_trigger);
         intake.setPower(-gamepad2.left_trigger);
 
-        if(gamepad1.right_bumper || gamepad2.right_bumper)
+        // 0.5 too far
+        if(gamepad2.y) // middle
         {
-            intake.setPower(1);
+            servo1.setPosition(0.25);
         }
-        else if(gamepad1.left_bumper || gamepad2.left_bumper)
+
+        else if(gamepad2.a)
         {
-            intake.setPower(-1);
+            servo1.setPosition(0.0);
+        }
+        else if(gamepad2.b)
+        {
+            servo1.setPosition(0.35);
         }
     }
 
