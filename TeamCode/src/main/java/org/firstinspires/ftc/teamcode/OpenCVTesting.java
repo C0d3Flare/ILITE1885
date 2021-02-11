@@ -30,31 +30,37 @@ public class OpenCVTesting extends OpMode {
     /**
      * Declare variables here
      */
-    DcMotor leftFront;
-    DcMotor rightFront;
-    DcMotor leftBack;
-    DcMotor rightBack;
+    //DcMotor leftFront;
+    //DcMotor rightFront;
+    //DcMotor leftBack;
+    //DcMotor rightBack;
     EasyOpenCVExample.SkystoneDeterminationPipeline pipeline;
     OpenCvWebcam webcam;
+    //OpenCvInternalCamera phoneCam;
     @Override
     public void init() {
         /**
          * Init variables here
          */
-        leftFront = hardwareMap.dcMotor.get("leftFront");
-        rightFront = hardwareMap.dcMotor.get("rightFront");
-        leftBack = hardwareMap.dcMotor.get("leftBack");
-        rightBack = hardwareMap.dcMotor.get("rightBack");
+        //leftFront = hardwareMap.dcMotor.get("leftFront");
+        //rightFront = hardwareMap.dcMotor.get("rightFront");
+        //leftBack = hardwareMap.dcMotor.get("leftBack");
+        //rightBack = hardwareMap.dcMotor.get("rightBack");
 
-        leftFront.setDirection(DcMotor.Direction.REVERSE);
-        rightFront.setDirection(DcMotor.Direction.FORWARD);
-        leftBack.setDirection(DcMotor.Direction.REVERSE);
-        rightBack.setDirection(DcMotor.Direction.FORWARD);
-
+        //leftFront.setDirection(DcMotor.Direction.REVERSE);
+        //rightFront.setDirection(DcMotor.Direction.FORWARD);
+        //leftBack.setDirection(DcMotor.Direction.REVERSE);
+        //rightBack.setDirection(DcMotor.Direction.FORWARD);
+        /**
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+         */
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         pipeline = new EasyOpenCVExample.SkystoneDeterminationPipeline();
         webcam.setPipeline(pipeline);
+
+
 
         // We set the viewport policy to optimized view so the preview doesn't appear 90 deg
         // out when the RC activity is in portrait. We do our actual image processing assuming
