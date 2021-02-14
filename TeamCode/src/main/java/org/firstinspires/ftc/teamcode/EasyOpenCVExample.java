@@ -104,13 +104,19 @@ public class EasyOpenCVExample extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181,98);
+        //change top left (anchor point)
+        // (160, 120) centerpoint
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(135,129);
 
-        static final int REGION_WIDTH = 35;
-        static final int REGION_HEIGHT = 25;
+        //rectangle width
+        static final int REGION_WIDTH = 50;
+        //rect height
+        static final int REGION_HEIGHT = 17;
 
-        final int FOUR_RING_THRESHOLD = 150;
-        final int ONE_RING_THRESHOLD = 135;
+        final int FOUR_RING_THRESHOLD = 139;
+        final int ONE_RING_THRESHOLD = 132;
+//        final int FOUR_RING_THRESHOLD = 150;
+//        final int ONE_RING_THRESHOLD = 135;
 
         Point region1_pointA = new Point(
                 REGION1_TOPLEFT_ANCHOR_POINT.x,
