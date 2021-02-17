@@ -1,9 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -13,25 +11,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvWebcam;
 
-
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvInternalCamera;
-import org.openftc.easyopencv.OpenCvPipeline;
-import org.openftc.easyopencv.OpenCvWebcam;
-
-import static java.lang.Thread.sleep;
-
-@Autonomous(name = "OpenCV Test", group="thing")
-public class OpenCVTesting extends OpMode {
+public class OpenCVTesting2 extends LinearOpMode {
     /**
      * Declare variables here
      */
@@ -46,9 +26,8 @@ public class OpenCVTesting extends OpMode {
     int encoderRev = 1120;
     int sectionSelect = 0;
     private ElapsedTime runtime = new ElapsedTime();
-    //OpenCvInternalCamera phoneCam;
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
         /**
          * Init variables here
          */
@@ -64,8 +43,8 @@ public class OpenCVTesting extends OpMode {
         leftBack.setDirection(DcMotor.Direction.FORWARD);
         rightBack.setDirection(DcMotor.Direction.REVERSE);
         /**
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
+         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
          */
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
@@ -87,30 +66,26 @@ public class OpenCVTesting extends OpMode {
                 webcam.startStreaming(320,240, OpenCvCameraRotation.UPSIDE_DOWN);
             }
         });
+        while(!isStarted() && !isStopRequested())
+        {
+            telemetry.addData("Analysis", pipeline.getAnalysis());
+            telemetry.addData("Position", pipeline.position);
+            telemetry.update();
+            arm.setPosition(0.8);
 
-
-    }
-
-    @Override
-    public void init_loop() {
-        telemetry.addData("Analysis", pipeline.getAnalysis());
-        telemetry.addData("Position", pipeline.position);
-        telemetry.update();
-        arm.setPosition(0.8);
-
-        if(gamepad1.a){
-            sectionSelect = 1;
-        }
-        else if(gamepad1.b){
-            sectionSelect = 2;
-        }
-        else if(gamepad2.x){
-            sectionSelect = 3;
+            if(gamepad1.a){
+                sectionSelect = 1;
+            }
+            else if(gamepad1.b){
+                sectionSelect = 2;
+            }
+            else if(gamepad2.x){
+                sectionSelect = 3;
+            }
         }
 
-    }
+        waitForStart();
 
-    public void start() {
         /**
          * Place all robot movement code in here.
          */
@@ -136,12 +111,12 @@ public class OpenCVTesting extends OpMode {
 
         //section a
         /**
-        ramp.setPower(.3);
-        encoderStrafeRight(1.0, (int)(encoderRev*1));
-        encoderDriveForward(1.0, (int)(encoderRev*4.7));
-        ramp.setPower(-0.1);
-        arm.setPosition(0.25);
-        ramp.setPower(0);
+         ramp.setPower(.3);
+         encoderStrafeRight(1.0, (int)(encoderRev*1));
+         encoderDriveForward(1.0, (int)(encoderRev*4.7));
+         ramp.setPower(-0.1);
+         arm.setPosition(0.25);
+         ramp.setPower(0);
          */
 
         //section b
@@ -153,13 +128,13 @@ public class OpenCVTesting extends OpMode {
 
         //section c
         /**
-        ramp.setPower(.3);
-        encoderStrafeRight(1.0, (int)(encoderRev*1));
-        encoderDriveForward(1.0, (int)(encoderRev*6.7));
-        ramp.setPower(-0.1);
-        arm.setPosition(0.25);
-        ramp.setPower(0);
-        */
+         ramp.setPower(.3);
+         encoderStrafeRight(1.0, (int)(encoderRev*1));
+         encoderDriveForward(1.0, (int)(encoderRev*6.7));
+         ramp.setPower(-0.1);
+         arm.setPosition(0.25);
+         ramp.setPower(0);
+         */
 
 
         ramp.setPower(-0.1);
@@ -179,8 +154,8 @@ public class OpenCVTesting extends OpMode {
             ramp.setPower(0);
         }
 
-    }
 
+    }
     public void encoderDriveForward(double power, int encoderAmount)
     {
         leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -428,14 +403,4 @@ public class OpenCVTesting extends OpMode {
     {
         strafeRight(-power);
     }
-
-
-
-    @Override
-    public void loop() {
-
-
-    }
 }
-
-

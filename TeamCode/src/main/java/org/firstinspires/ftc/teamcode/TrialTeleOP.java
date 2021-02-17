@@ -19,6 +19,7 @@ public class TrialTeleOP extends OpMode
     DcMotor ramp;
     DcMotor intake;
     Servo servo1;
+    Servo arm;
     @Override
     public void init()
     {
@@ -29,6 +30,7 @@ public class TrialTeleOP extends OpMode
         ramp = hwMotor("ramp");
         intake = hwMotor("intake");
         servo1 = hardwareMap.servo.get("servo");
+        arm = hardwareMap.servo.get("arm");
 
         leftFront.setDirection(DcMotor.Direction.REVERSE);
         rightFront.setDirection(DcMotor.Direction.FORWARD);
@@ -103,18 +105,24 @@ public class TrialTeleOP extends OpMode
          */
 
         // 0.5 too far
-        if(gamepad2.y) // middle
-        {
-            servo1.setPosition(0.25);
-        }
 
-        else if(gamepad2.right_bumper)
+        if(gamepad2.right_bumper)
         {
             servo1.setPosition(0.0);
         }
         else if(gamepad2.left_bumper)
         {
             servo1.setPosition(0.35);
+        }
+
+        if(gamepad2.y){
+            arm.setPosition(0.25);
+
+        }
+
+        else if(gamepad2.a)
+        {
+            arm.setPosition(0.80);
         }
     }
 
