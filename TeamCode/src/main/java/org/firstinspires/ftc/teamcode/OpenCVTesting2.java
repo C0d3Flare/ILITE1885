@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -10,7 +11,7 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvWebcam;
-
+@Autonomous(name="OpenCVTesting2", group="Test")
 public class OpenCVTesting2 extends LinearOpMode {
     /**
      * Declare variables here
@@ -79,7 +80,7 @@ public class OpenCVTesting2 extends LinearOpMode {
             else if(gamepad1.b){
                 sectionSelect = 2;
             }
-            else if(gamepad2.x){
+            else if(gamepad1.x){
                 sectionSelect = 3;
             }
         }
@@ -120,6 +121,7 @@ public class OpenCVTesting2 extends LinearOpMode {
          */
 
         //section b
+        /**
         ramp.setPower(.3);
         encoderStrafeRight(1.0, (int)(encoderRev*1));
         encoderDriveForward(1.0, (int)(encoderRev*5.3));
@@ -137,22 +139,36 @@ public class OpenCVTesting2 extends LinearOpMode {
          */
 
 
-        ramp.setPower(-0.1);
-        arm.setPosition(0.25);
-        ramp.setPower(0);
-        if(sectionSelect == 1){
 
+        if(sectionSelect == 1){
+            ramp.setPower(.3);
+            encoderStrafeRight(1.0, (int)(encoderRev*1));
+            encoderDriveForward(1.0, (int)(encoderRev*4.7));
+            encoderTurnRight(0.75, (int)(encoderRev*0.4));
+            encoderDriveForward(0.5, (int)(encoderRev*0.4));
+        }
+
+        else if(sectionSelect == 2)
+        {
+            ramp.setPower(.3);
+            encoderStrafeRight(1.0, (int)(encoderRev*1));
+            encoderDriveForward(1.0, (int)(encoderRev*5.3));
+            encoderStrafeLeft(1.0, (int)(encoderRev*1.5));
+            encoderDriveForward(0.5, (int)(encoderRev*1.7));
         }
 
         else if(sectionSelect == 3)
         {
             ramp.setPower(.3);
             encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*6.7));
+            encoderDriveForward(1.0, (int)(encoderRev*8.7));
             ramp.setPower(-0.1);
             arm.setPosition(0.25);
             ramp.setPower(0);
         }
+        ramp.setPower(-0.5);
+        arm.setPosition(0.25);
+        ramp.setPower(0);
 
 
     }
@@ -196,10 +212,10 @@ public class OpenCVTesting2 extends LinearOpMode {
         leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftFront.setTargetPosition(-encoderAmount);
-        rightFront.setTargetPosition(encoderAmount);
-        leftBack.setTargetPosition(-encoderAmount);
-        rightBack.setTargetPosition(encoderAmount);
+        leftFront.setTargetPosition(encoderAmount);
+        rightFront.setTargetPosition(-encoderAmount);
+        leftBack.setTargetPosition(encoderAmount);
+        rightBack.setTargetPosition(-encoderAmount);
 
         leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -229,10 +245,10 @@ public class OpenCVTesting2 extends LinearOpMode {
         leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftFront.setTargetPosition(encoderAmount);
-        rightFront.setTargetPosition(-encoderAmount);
-        leftBack.setTargetPosition(encoderAmount);
-        rightBack.setTargetPosition(-encoderAmount);
+        leftFront.setTargetPosition(-encoderAmount);
+        rightFront.setTargetPosition(encoderAmount);
+        leftBack.setTargetPosition(-encoderAmount);
+        rightBack.setTargetPosition(encoderAmount);
 
         leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -361,23 +377,12 @@ public class OpenCVTesting2 extends LinearOpMode {
         leftBack.setPower(power);
         rightBack.setPower(power);
     }
-    public void driveForward(double power, int time)
-    {
-        leftFront.setPower(power);
-        rightFront.setPower(power);
-        leftBack.setPower(power);
-        rightBack.setPower(power);
-
-        runtime.reset();
-        //while (opModeIsActive() && (runtime.seconds() < 1.3))
-
-    }
     public void turnLeft(double power)
     {
-        leftFront.setPower(-power);
-        rightFront.setPower(power);
-        leftBack.setPower(-power);
-        rightBack.setPower(power);
+        leftFront.setPower(power);
+        rightFront.setPower(-power);
+        leftBack.setPower(power);
+        rightBack.setPower(-power);
     }
     public void turnRight(double power)
     {
