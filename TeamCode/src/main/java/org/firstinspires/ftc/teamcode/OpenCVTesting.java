@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -31,6 +32,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
 import static java.lang.Thread.sleep;
 
 @Autonomous(name = "OpenCV Test", group="thing")
+@Disabled
 public class OpenCVTesting extends OpMode {
     /**
      * Declare variables here
