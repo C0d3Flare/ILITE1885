@@ -11,8 +11,9 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvWebcam;
-@Autonomous(name="OpenCV Blue", group="Test")
-public class OpenCVTesting2 extends LinearOpMode {
+
+@Autonomous(name="OpenCV Red", group="Test")
+public class OpenCVRed extends LinearOpMode {
     /**
      * Declare variables here
      */
@@ -95,50 +96,50 @@ public class OpenCVTesting2 extends LinearOpMode {
         if (pipeline.position == EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.FOUR)
         {
             ramp.setPower(.3);
-            encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*8.7));
-            encoderStrafeRight(1.0, (int)(encoderRev*0.75));
-
+            encoderDriveForward(1.0, (int)(encoderRev*9));
+            turnLeft(1);
+            sleep(750);
+            encoderDriveForward(1.0, (int)(encoderRev*1.5));
             ramp.setPower(-0.3);
             sleep(575);
             arm.setPosition(0.25);
             ramp.setPower(0);
 
-            encoderDriveBackward(1, (int)(encoderRev*4));
+            turnRight(1);
+            sleep(750);
+            stopDriving();
+            encoderDriveBackward(1, encoderRev*3);
         }
         // One ring
         else if(pipeline.position == EasyOpenCVExample.SkystoneDeterminationPipeline.RingPosition.ONE)
         {
             ramp.setPower(.3);
-            encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*5.3));
-            encoderStrafeLeft(1.0, (int)(encoderRev*1.5));
-            encoderDriveForward(0.5, (int)(encoderRev*1.7));
-
+            encoderDriveForward(1.0, (int)(encoderRev*7.5));
+            turnLeft(1);
+            sleep(750);
+            encoderDriveBackward(1, (int)(encoderRev*0.5));
             ramp.setPower(-0.3);
             sleep(575);
             arm.setPosition(0.25);
             ramp.setPower(0);
 
-            encoderDriveBackward(1, (int)(encoderRev*1));
+            turnRight(1);
+            sleep(750);
+            stopDriving();
+            encoderDriveBackward(1, (int)(encoderRev*1.5));
         }
         // No rings
         else
         {
             ramp.setPower(.3);
-            encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*4.7));
-            encoderTurnRight(0.75, (int)(encoderRev*0.4));
-            encoderDriveForward(0.5, (int)(encoderRev*0.4));
-
+            encoderDriveForward(1.0, (int)(encoderRev*6));
+            turnLeft(1);
+            sleep(750);
+            encoderDriveForward(1, (int)(encoderRev*1.5));
             ramp.setPower(-0.3);
             sleep(575);
             arm.setPosition(0.25);
             ramp.setPower(0);
-
-            encoderDriveBackward(1, (int)(encoderRev*0.5));
-            encoderStrafeLeft(1, (int)(encoderRev*1.5));
-            encoderDriveForward(1, (int)(encoderRev*0.5));
         }
 
         // All other autonomous code goes down here
@@ -176,27 +177,28 @@ public class OpenCVTesting2 extends LinearOpMode {
         /**
         if(sectionSelect == 1){
             ramp.setPower(.3);
-            encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*4.7));
-            encoderTurnRight(0.75, (int)(encoderRev*0.4));
-            encoderDriveForward(0.5, (int)(encoderRev*0.4));
+            encoderDriveForward(1.0, (int)(encoderRev*6));
+            turnLeft(1);
+            sleep(750);
+            encoderDriveForward(1, (int)(encoderRev*1.5));
         }
 
         else if(sectionSelect == 2)
         {
             ramp.setPower(.3);
-            encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*5.3));
-            encoderStrafeLeft(1.0, (int)(encoderRev*1.5));
-            encoderDriveForward(0.5, (int)(encoderRev*1.7));
+            encoderDriveForward(1.0, (int)(encoderRev*7.5));
+            turnLeft(1);
+            sleep(750);
+            encoderDriveBackward(1, (int)(encoderRev*0.5));
         }
 
         else if(sectionSelect == 3)
         {
             ramp.setPower(.3);
-            encoderStrafeRight(1.0, (int)(encoderRev*1));
-            encoderDriveForward(1.0, (int)(encoderRev*8.7));
-            encoderStrafeRight(1.0, (int)(encoderRev*0.75));
+            encoderDriveForward(1.0, (int)(encoderRev*9));
+            turnLeft(1);
+            sleep(750);
+            encoderDriveForward(1.0, (int)(encoderRev*1.5));
         }
          **/
 
