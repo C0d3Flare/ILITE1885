@@ -38,7 +38,7 @@ public class TrialTeleOP extends OpMode
         rightBack.setDirection(DcMotor.Direction.FORWARD);
         // Encoder tick for 40's motors = 1120
 
-        //AUSTIN WAS HERE
+        //SEAN WAS HERE
     }
 
     @Override
